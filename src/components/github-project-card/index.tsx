@@ -1,10 +1,7 @@
-import { Fragment } from 'react';
-import { AiOutlineFork, AiOutlineStar } from 'react-icons/ai';
-import { MdInsertLink } from 'react-icons/md';
-import { ga, getLanguageColor, skeleton } from '../../utils';
 import { GithubProject } from '../../interfaces/github-project';
 import { GoLinkExternal } from 'react-icons/go';
 import { FaGithub } from 'react-icons/fa';
+import { ga, skeleton } from '../../utils';
 
 const GithubProjectCard = ({
   header,
@@ -94,7 +91,7 @@ const GithubProjectCard = ({
                   rel="noopener noreferrer"
                   className="text-gray-500 hover:text-black dark:hover:text-white"
                   title="View on GitHub"
-                  onClick={e => {
+                  onClick={() => {
                     if (googleAnalyticsId) {
                       try {
                         ga.event('Click project github', { project: item.name });
@@ -111,7 +108,7 @@ const GithubProjectCard = ({
                     rel="noopener noreferrer"
                     className="text-gray-500 hover:text-black dark:hover:text-white"
                     title="Visit project homepage"
-                    onClick={e => {
+                    onClick={() => {
                       if (googleAnalyticsId) {
                         try {
                           ga.event('Click project homepage', { project: item.name });
@@ -134,46 +131,44 @@ const GithubProjectCard = ({
   };
 
   return (
-    <Fragment>
-      <div className="col-span-1 lg:col-span-2">
-        <div className="grid grid-cols-2 gap-6">
-          <div className="col-span-2">
-            <div className="card compact bg-base-100 shadow bg-opacity-40">
-              <div className="card-body">
-                <div className="mx-3 flex items-center justify-between mb-2">
-                  <h5 className="card-title">
-                    {loading ? (
-                      skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
-                    ) : (
-                      <span className="text-base-content opacity-70">
-                        {header}
-                      </span>
-                    )}
-                  </h5>
+    <div className="col-span-1 lg:col-span-2">
+      <div className="grid grid-cols-2 gap-6">
+        <div className="col-span-2">
+          <div className="card compact bg-base-100 shadow bg-opacity-40">
+            <div className="card-body">
+              <div className="mx-3 flex items-center justify-between mb-2">
+                <h5 className="card-title">
                   {loading ? (
-                    skeleton({ widthCls: 'w-10', heightCls: 'h-5' })
+                    skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
                   ) : (
-                    <a
-                      href={`https://github.com/${username}?tab=repositories`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-base-content opacity-50 hover:underline"
-                    >
-                      See All
-                    </a>
+                    <span className="text-base-content opacity-70">
+                      {header}
+                    </span>
                   )}
-                </div>
-                <div className="col-span-2">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {loading ? renderSkeleton() : renderProjects()}
-                  </div>
+                </h5>
+                {loading ? (
+                  skeleton({ widthCls: 'w-10', heightCls: 'h-5' })
+                ) : (
+                  <a
+                    href={`https://github.com/${username}?tab=repositories`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-base-content opacity-50 hover:underline"
+                  >
+                    See All
+                  </a>
+                )}
+              </div>
+              <div className="col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {loading ? renderSkeleton() : renderProjects()}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 
