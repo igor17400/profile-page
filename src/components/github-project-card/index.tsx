@@ -4,6 +4,7 @@ import { MdInsertLink } from 'react-icons/md';
 import { ga, getLanguageColor, skeleton } from '../../utils';
 import { GithubProject } from '../../interfaces/github-project';
 import { GoLinkExternal } from 'react-icons/go';
+import { FaGithub } from 'react-icons/fa';
 
 const GithubProjectCard = ({
   header,
@@ -76,73 +77,59 @@ const GithubProjectCard = ({
 
   const renderProjects = () => {
     return githubProjects.map((item, index) => (
-      <a
-        className="card shadow-lg compact bg-base-100 cursor-pointer
-        hover:shadow-2xl hover:text-primary
-        hover:transform hover:translate-y-[-10px] transition-transform duration-300
-        "
-        href={item.html_url}
+      <div
+        className="card shadow-lg compact bg-base-100 transition-transform duration-300 hover:shadow-2xl hover:-translate-y-2"
         key={index}
-        onClick={(e) => {
-          e.preventDefault();
-
-          try {
-            if (googleAnalyticsId) {
-              ga.event('Click project', {
-                project: item.name,
-              });
-            }
-          } catch (error) {
-            console.error(error);
-          }
-
-          window?.open(item.homepage ? item.homepage : item.html_url, '_blank');
-        }}
       >
         <div className="flex justify-between flex-col p-4 h-full w-full">
           <div>
-            <div className="flex">
-              <div className="flex-grow" />
-              <div
-                className="text-lg flex items-start justify-end"
-                style={{ flexBasis: '15%' }}
-              >
-                <GoLinkExternal />
+            <div className="flex items-center justify-between mb-2">
+              <div className="card-title text-lg tracking-wide flex text-base-content opacity-60 truncate">
+                <span className="truncate">{item.name}</span>
               </div>
-            </div>
-            <div className="flex items-center truncate">
-              <div className="card-title text-lg tracking-wide flex text-base-content opacity-60">
-                <MdInsertLink className="my-auto" />
-                <span>{item.name}</span>
+              <div className="flex space-x-2">
+                <a
+                  href={item.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-black dark:hover:text-white"
+                  title="View on GitHub"
+                  onClick={e => {
+                    if (googleAnalyticsId) {
+                      try {
+                        ga.event('Click project github', { project: item.name });
+                      } catch (error) {}
+                    }
+                  }}
+                >
+                  <FaGithub className="w-5 h-5" />
+                </a>
+                {item.homepage && (
+                  <a
+                    href={item.homepage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-black dark:hover:text-white"
+                    title="Visit project homepage"
+                    onClick={e => {
+                      if (googleAnalyticsId) {
+                        try {
+                          ga.event('Click project homepage', { project: item.name });
+                        } catch (error) {}
+                      }
+                    }}
+                  >
+                    <GoLinkExternal className="w-5 h-5" />
+                  </a>
+                )}
               </div>
             </div>
             <p className="mb-5 mt-1 text-base-content text-opacity-60 text-sm">
               {item.description}
             </p>
           </div>
-          <div className="flex justify-between text-sm text-base-content text-opacity-60 truncate">
-            <div className="flex flex-grow">
-              <span className="mr-3 flex items-center">
-                <AiOutlineStar className="mr-0.5" />
-                <span>{item.stargazers_count}</span>
-              </span>
-              <span className="flex items-center">
-                <AiOutlineFork className="mr-0.5" />
-                <span>{item.forks_count}</span>
-              </span>
-            </div>
-            <div>
-              <span className="flex items-center">
-                <div
-                  className="w-3 h-3 rounded-full mr-1 opacity-60"
-                  style={{ backgroundColor: getLanguageColor(item.language) }}
-                />
-                <span>{item.language}</span>
-              </span>
-            </div>
-          </div>
         </div>
-      </a>
+      </div>
     ));
   };
 

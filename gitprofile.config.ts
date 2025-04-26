@@ -27,10 +27,10 @@ const CONFIG = {
         // Properties for manually specifying projects
         sortBy: 'updated',
         projects: [
-          'igor17400/igor17400.github.io',
-          'igor17400/n2s-algo',
-          'igor17400/n2s-info-theory',
-          'igor17400/n2s-dsp',
+          'igor17400/alphadl',
+          'igor17400/BTC',
+          'toyolabo/awrs_recsys',
+          'igor17400/n2s',
         ], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
       },
     },
@@ -47,11 +47,11 @@ const CONFIG = {
   },
   educations: [
     {
-      institution: 'The University of Tokyo',
-      degree: 'Research Scholar with focus on Artificial Intelligence',
-      from: 'April 2023',
-      to: 'Present',
-      schoolLink: 'https://sites.google.com/view/toyolab/members?authuser=0',
+      institution: 'Imperial College London',
+      degree: 'MRes in Artificial Intelligence and Machine Learning',
+      from: 'Starting September 2025',
+      to: 'Expected September 2026',
+      schoolLink: 'https://www.imperial.ac.uk/',
     },
     {
       institution: 'University of Brasilia',
@@ -88,11 +88,11 @@ const CONFIG = {
     telegram: '',
     website: 'https://igorazevedo.com/blog',
     phone: '',
-    email: 'lima-rocha-azevedo-igor@g.ecc.u-tokyo.ac.jp',
+    email: 'igorlima1740@gmail.com',
   },
   resume: {
     fileUrl:
-      'https://drive.google.com/file/d/1Q8JOiaVUqFnytBTCQIEXqMazJ0pR1ckM/view?usp=sharing',
+      'https://drive.google.com/file/d/1luP6-URkd8m8s97L1rZK7v4aXgu56JN1/view?usp=sharing',
   },
   skills: [
     'Python',
@@ -113,18 +113,28 @@ const CONFIG = {
   ],
   experiences: [
     {
+      company: 'The University of Tokyo',
+      position: 'Research Scholar',
+      from: 'April 2023',
+      to: 'April 2025',
+      companyLink: 'https://sites.google.com/view/toyolab/members?authuser=0',
+      type: 'research',
+    },
+    {
       company: 'Voga',
       position: 'Technology Coordinator',
       from: 'February 2022',
       to: 'April 2023',
       companyLink: 'https://voga.com.br/',
+      type: 'professional',
     },
     {
-      company: 'BridgeHub',
+      company: 'Voga',
       position: 'Development Team Lead',
       from: 'July 2021',
       to: 'January 2022',
-      companyLink: 'https://www.bridgehub.com.br/',
+      companyLink: 'https://www.voga.com.br/',
+      type: 'professional',
     },
     {
       company: 'Cellcrypt Inc.',
@@ -132,6 +142,7 @@ const CONFIG = {
       from: 'September 2020',
       to: 'July 2021',
       companyLink: 'https://www.cellcrypt.com/',
+      type: 'research',
     },
     {
       company:
@@ -140,6 +151,7 @@ const CONFIG = {
       from: 'June 2019',
       to: 'August 2020',
       companyLink: 'https://enetec.unb.br/',
+      type: 'professional',
     },
   ],
   certifications: [

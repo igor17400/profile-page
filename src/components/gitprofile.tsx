@@ -212,10 +212,18 @@ const GitProfile = ({ config }: { config: Config }) => {
                         educations={sanitizedConfig.educations}
                       />
                     )}
-                    {sanitizedConfig.experiences.length !== 0 && (
+                    {/* Research Experience Card (first) */}
+                    {sanitizedConfig.experiences.filter(e => e.type === 'research').length !== 0 && (
                       <ExperienceCard
                         loading={loading}
-                        experiences={sanitizedConfig.experiences}
+                        experiences={sanitizedConfig.experiences.filter(e => e.type === 'research')}
+                      />
+                    )}
+                    {/* Professional Experience Card (second) */}
+                    {sanitizedConfig.experiences.filter(e => e.type === 'professional').length !== 0 && (
+                      <ExperienceCard
+                        loading={loading}
+                        experiences={sanitizedConfig.experiences.filter(e => e.type === 'professional')}
                       />
                     )}
                     <div className="hidden md:block">

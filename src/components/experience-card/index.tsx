@@ -59,43 +59,49 @@ const ExperienceCard = ({
         />,
       );
     }
-
     return array;
   };
+
+  // Split experiences by type
+  const professional = experiences.filter(e => e.type === 'professional');
+  const research = experiences.filter(e => e.type === 'research');
+
   return (
     <div className="card shadow-lg compact bg-base-100">
       <div className="card-body">
-        <div className="mx-3">
-          <h5 className="card-title">
-            {loading ? (
-              skeleton({ widthCls: 'w-32', heightCls: 'h-8' })
-            ) : (
-              <span className="text-base-content opacity-70">Experience</span>
-            )}
-          </h5>
-        </div>
         <div className="text-base-content text-opacity-60">
-          <ol className="relative border-l border-base-300 border-opacity-30 my-2 mx-4">
-            {loading ? (
-              renderSkeleton()
-            ) : (
-              <Fragment>
-                {experiences.map((experience, index) => (
+          {professional.length > 0 && (
+            <>
+              <h6 className="font-bold text-lg mt-2 mb-2">Professional Experience</h6>
+              <ol className="relative border-l border-base-300 border-opacity-30 my-2 mx-4">
+                {loading ? renderSkeleton() : professional.map((experience, index) => (
                   <ListItem
                     key={index}
                     time={`${experience.from} - ${experience.to}`}
                     position={experience.position}
                     company={experience.company}
-                    companyLink={
-                      experience.companyLink
-                        ? experience.companyLink
-                        : undefined
-                    }
+                    companyLink={experience.companyLink ? experience.companyLink : undefined}
                   />
                 ))}
-              </Fragment>
-            )}
-          </ol>
+              </ol>
+            </>
+          )}
+          {research.length > 0 && (
+            <>
+              <h6 className="font-bold text-lg mt-2 mb-2">Research Experience</h6>
+              <ol className="relative border-l border-base-300 border-opacity-30 my-2 mx-4">
+                {loading ? renderSkeleton() : research.map((experience, index) => (
+                  <ListItem
+                    key={index}
+                    time={`${experience.from} - ${experience.to}`}
+                    position={experience.position}
+                    company={experience.company}
+                    companyLink={experience.companyLink ? experience.companyLink : undefined}
+                  />
+                ))}
+              </ol>
+            </>
+          )}
         </div>
       </div>
     </div>
