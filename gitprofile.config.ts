@@ -70,7 +70,7 @@ const CONFIG = {
     },
   ],
   social: {
-    linkedin: 'igor-lima-',
+    linkedin: 'igorlrazevedo',
     twitter: '',
     mastodon: '',
     researchGate: '',
@@ -92,7 +92,7 @@ const CONFIG = {
   },
   resume: {
     fileUrl:
-      'https://drive.google.com/file/d/1luP6-URkd8m8s97L1rZK7v4aXgu56JN1/view?usp=sharing',
+      'https://resume.igorazevedo.com',
   },
   skills: [
     'Python',
